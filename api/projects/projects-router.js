@@ -34,7 +34,7 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
   const { id } = req.params;
 
-  if (!req.body.completed) {
+  if (!('completed' in req.body)) {
     return res
       .status(400)
       .json({ message: 'Please provide a completed status' });
@@ -43,7 +43,7 @@ router.put('/:id', async (req, res) => {
   const project = await Project.update(id, req.body);
 
   if (project) {
-    res.status(200).json({ project });
+    res.status(200).json(project);
   } else {
     res.status(404).json({ message: 'Project not found' });
   }

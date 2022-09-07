@@ -1,8 +1,6 @@
 // add middlewares here related to projects
 
 async function projectRequiredFields(req, res, next) {
-  console.log('middleware', req.body);
-
   if (req.body.name && req.body.description) {
     next();
   } else {
